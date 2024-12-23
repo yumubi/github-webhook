@@ -1,0 +1,65 @@
+token: "your-telegram-bot-token"
+recipients:
+  - "123456789"  # Chat ID or @username
+  - "@channel_name"
+
+message:
+  text: |
+    🚀 *Build Notification*
+    
+    Repository: ${repo}
+    Branch: ${branch}
+    Commit: ${commit}
+    Author: ${author}
+    Status: ${status}
+    
+    [View Details](${build_link})
+  format: "Markdown"
+  templateVars:
+    build_link: "https://github.com/your-repo/actions"
+
+media:
+  photos: []
+  documents: []
+  stickers: []
+  audio: []
+  voice: []
+  videos: []
+  location: []
+  venue: []
+
+settings:
+  debug: false
+  matchEmail: false
+  disableWebPagePreview: false
+  disableNotification: false
+  socks5Proxy: null
+
+ci:
+  repository:
+    fullName: "owner/repo"
+    namespace: "owner"
+    name: "repo"
+
+  commit:
+    sha: "${GITHUB_SHA}"
+    ref: "${GITHUB_REF}"
+    branch: "${GITHUB_REF_NAME}"
+    link: "https://github.com/owner/repo/commit/${GITHUB_SHA}"
+    author: "${GITHUB_ACTOR}"
+    authorEmail: ""
+    message: ""
+
+  build:
+    event: "push"
+    status: "success"
+    link: "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+    started: 0
+    finished: 0
+
+  github:
+    workflow: "${GITHUB_WORKFLOW}"
+    workspace: "${GITHUB_WORKSPACE}"
+    action: "${GITHUB_ACTION}"
+    eventName: "${GITHUB_EVENT_NAME}"
+    eventPath: "${GITHUB_EVENT_PATH}"
